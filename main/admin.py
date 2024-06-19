@@ -1,5 +1,23 @@
 from django.contrib import admin
-from .models import Service, Advantage, Category, Testimonial, Project, News, Employee, Banner, SiteSetting
+from .models import *
+
+
+@admin.register(SiteContent)
+class SiteContentAdmin(admin.ModelAdmin):
+    list_display = ('current_text', 'original_text')  # Display these fields in the list view
+    readonly_fields = ('original_text',)  # Prevent modification of the original text
+    search_fields = ('original_text', 'current_text')  # Allow searching by both original and current text
+
+    fieldsets = (
+        (None, {
+            'fields': ('original_text', 'current_text', 'current_text_ru', 'current_text_ky'),
+        }),
+    )
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # Editing an existing object
+            return self.readonly_fields + ('original_text',)
+        return self.readonly_fields
 
 
 @admin.register(Service)
@@ -7,6 +25,20 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ('title', 'subtitle')
     search_fields = ('title', 'subtitle')
     list_filter = ('title',)
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title',)
+    search_fields = ('title',)
+    list_filter = ('title',)
+
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name', 'created_at')
+    search_fields = ('first_name', 'created_at')
+    list_filter = ('first_name',)
 
 
 @admin.register(Advantage)
@@ -58,3 +90,6 @@ class BannerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SiteSetting)
+admin.site.register(CategoryVacancy)
+admin.site.register(Industry)
+admin.site.register(Vacancy)

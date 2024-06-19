@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block title %}
 ОСОО КТЗ
@@ -78,11 +79,11 @@
 
 								{% if page_obj.has_next %}
 									<li class="next">
-										<a href="?page={{ page_obj.next_page_number }}">Next <i class="ti-arrow-right"></i></a>
+										<a href="?page={{ page_obj.next_page_number }}">Следующий <i class="ti-arrow-right"></i></a>
 									</li>
 								{% else %}
 									<li class="next disabled">
-										<a href="javascript:void(0);">Next <i class="ti-arrow-right"></i></a>
+										<a href="javascript:void(0);">Следующий <i class="ti-arrow-right"></i></a>
 									</li>
 								{% endif %}
 							</ul>
@@ -94,11 +95,11 @@
                     <div class="col-xl-3 col-lg-4 col-md-5">
                         <aside  class="side-bar sticky-top">
                             <div class="widget">
-                                <h5 class="widget-title style-1">Search</h5>
+                                <h5 class="widget-title style-1">{% trans 'Поиск' %}</h5>
                                 <div class="search-bx style-1">
-                                    <form role="search" method="post">
+                                    <form role="search" method="get">
                                         <div class="input-group">
-                                            <input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
+                                            <input name="title" class="form-control" placeholder="{% trans 'Введите' %}..." type="text">
                                             <span class="input-group-btn">
 												<button type="submit" class="fas fa-search text-primary"></button>
                                             </span> 
@@ -107,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="widget recent-posts-entry">
-                                <h5 class="widget-title style-1">Последние новости</h5>
+                                <h5 class="widget-title style-1">{% trans 'Последние новости' %}</h5>
                                 <div class="widget-post-bx">
 									{% for i in new_news %}
                                     <div class="widget-post clearfix">
@@ -129,121 +130,7 @@
 									{% endfor %}
                                 </div>
                             </div>
-							<div class="widget widget-newslatter">
-                                <h5 class="widget-title style-1">Newsletter</h5>
-                                <div class="news-box">
-									<p>Enter your e-mail and subscribe to our newsletter.</p>
-                                    <form class="dzSubscribe" action="script/mailchamp.php" method="post">
-										<div class="dzSubscribeMsg"></div>
-                                        <div class="input-group">
-                                            <input name="dzEmail" required="required" type="email" class="form-control" placeholder="Your Email"/>
-											<button name="submit" value="Submit" type="submit" class="site-button btn-block radius-no">Subscribe Now</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-							<div class="widget widget_gallery gallery-grid-4">
-                                <h5 class="widget-title style-1">Our Gallery</h5>
-                                <ul id="lightgallery" class="lightgallery">
-                                    <li>
-                                        <div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic1.jpg" data-src="images/gallery/pic1.jpg" class="check-km" title="Image 1 Title will come here">		
-												<img src="images/gallery/pic1.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-                                        <div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic2.jpg" data-src="images/gallery/pic2.jpg" class="check-km" title="Image 2 Title will come here">		
-												<img src="images/gallery/pic2.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-                                        <div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic3.jpg" data-src="images/gallery/pic3.jpg" class="check-km" title="Image 3 Title will come here">		
-												<img src="images/gallery/pic3.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-                                        <div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic4.jpg" data-src="images/gallery/pic4.jpg" class="check-km" title="Image 4 Title will come here">		
-												<img src="images/gallery/pic4.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-                                        <div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic5.jpg" data-src="images/gallery/pic5.jpg" class="check-km" title="Image 5 Title will come here">		
-												<img src="images/gallery/pic5.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-										<div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic6.jpg" data-src="images/gallery/pic6.jpg" class="check-km" title="Image 6 Title will come here">		
-												<img src="images/gallery/pic6.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-									 <li>
-										<div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic7.jpg" data-src="images/gallery/pic7.jpg" class="check-km" title="Image 7 Title will come here">		
-												<img src="images/gallery/pic7.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                    <li>
-										<div class="dlab-post-thum dlab-img-effect">
-											<span data-exthumbimage="images/gallery/pic8.jpg" data-src="images/gallery/pic8.jpg" class="check-km" title="Image 8 Title will come here">		
-												<img src="images/gallery/pic8.jpg" alt=""> 
-											</span>
-										</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="widget widget_archive">
-                                <h5 class="widget-title style-1">Categories List</h5>
-                                <ul>
-                                    <li><a href="javascript:void(0);">Electronic Materials</a></li>
-                                    <li><a href="javascript:void(0);">Auto Parts</a></li>
-                                    <li><a href="javascript:void(0);">Building Management</a></li>
-                                    <li><a href="javascript:void(0);">Power Systems</a></li>
-                                    <li><a href="javascript:void(0);">Power & Energy</a></li>
-                                </ul>
-                            </div>
-							<div class="widget widget-project">
-                                <h5 class="widget-title style-1">Our Project</h5>
-                                <div class="widget-project-box owl-none owl-loaded owl-theme owl-carousel dots-style-1 owl-dots-black-full">
-									<div class="item"><img src="images/our-services/pic1.jpg" alt=""/></div>
-									<div class="item"><img src="images/our-services/pic2.jpg" alt=""/></div>
-									<div class="item"><img src="images/our-services/pic3.jpg" alt=""/></div>
-								</div>
-                            </div>
-                            <div class="widget widget_tag_cloud radius">
-                                <h5 class="widget-title style-1">Tags</h5>
-                                <div class="tagcloud"> 
-									<a href="javascript:void(0);">Design</a> 
-									<a href="javascript:void(0);">User interface</a> 
-									<a href="javascript:void(0);">SEO</a> 
-									<a href="javascript:void(0);">WordPress</a> 
-									<a href="javascript:void(0);">Development</a> 
-									<a href="javascript:void(0);">Joomla</a> 
-									<a href="javascript:void(0);">Design</a> 
-									<a href="javascript:void(0);">User interface</a> 
-									<a href="javascript:void(0);">SEO</a> 
-									<a href="javascript:void(0);">WordPress</a> 
-									<a href="javascript:void(0);">Development</a> 
-									<a href="javascript:void(0);">Joomla</a> 
-									<a href="javascript:void(0);">Design</a> 
-									<a href="javascript:void(0);">User interface</a> 
-									<a href="javascript:void(0);">SEO</a> 
-									<a href="javascript:void(0);">WordPress</a> 
-									<a href="javascript:void(0);">Development</a> 
-									<a href="javascript:void(0);">Joomla</a> 
-								</div>
-                            </div>
+
                         </aside>
                     </div>
                     <!-- Side bar END -->

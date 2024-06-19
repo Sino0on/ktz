@@ -23,11 +23,13 @@ class Service(models.Model):
 class Advantage(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название')
     icon = models.CharField(max_length=255, verbose_name='Иконка')
+    counter = (models.PositiveIntegerField(verbose_name='Счетчик'))
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Преимущество'
         verbose_name_plural = 'Преимущества'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
@@ -104,6 +106,7 @@ class News(models.Model):
 class Employee(models.Model):
     name = models.CharField(max_length=255, verbose_name='Имя')
     profession = models.CharField(max_length=255, verbose_name='Профессия')
+    image = models.ImageField(upload_to='images/', verbose_name='Картинка')
     phone_number = models.CharField(max_length=20, verbose_name='Номер телефона')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -152,8 +155,12 @@ class SingletonModel(models.Model):
 class SiteSetting(SingletonModel):
     contacts = models.TextField(blank=True, verbose_name='Контакт')
     emails = models.TextField(blank=True, verbose_name='Почта')
+    title = models.CharField(max_length=123, blank=True, null=True, verbose_name='Название компании')
+    photo_video = models.ImageField(upload_to='images', blank=True, null=True, verbose_name='Название компании')
     description = RichTextField(blank=True, null=True, verbose_name='О нас')
     hours = models.CharField(max_length=123, verbose_name='Рабочие часы')
+    director = models.CharField(max_length=123, verbose_name='Директор')
+    video = models.URLField(verbose_name='Ссылка на ютуб')
     address = models.CharField(max_length=123, verbose_name="Адрес")
     address_map = models.TextField( verbose_name="Адрес на карте", default='''
     <a class="dg-widget-link" href="http://2gis.kg/bishkek/firm/70000001021088130/center/74.587426,42.845011/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Бишкека</a><div class="dg-widget-link"><a href="http://2gis.kg/bishkek/firm/70000001021088130/photos/70000001021088130/center/74.587426,42.845011/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a></div><div class="dg-widget-link"><a href="http://2gis.kg/bishkek/center/74.587426,42.845011/zoom/16/routeTab/rsType/bus/to/74.587426,42.845011╎Кыргызский Государственный Технический Университет им. И. Раззакова, ректорат?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Кыргызский Государственный Технический Университет им. И. Раззакова, ректорат</a></div><script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script><script charset="utf-8">new DGWidgetLoader({"width":640,"height":600,"borderColor":"#a3a3a3","pos":{"lat":42.845011,"lon":74.587426,"zoom":16},"opt":{"city":"bishkek"},"org":[{"id":"70000001021088130"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
@@ -162,3 +169,99 @@ class SiteSetting(SingletonModel):
     class Meta:
         verbose_name = 'Настройка сайта'
         verbose_name_plural = 'Настройки сайта'
+
+
+class Product(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    description = RichTextField(verbose_name='Описание')
+    mini_description = RichTextField(verbose_name='Мини Описание', blank=True, null=True)
+    price = models.CharField(max_length=123, verbose_name='Цена')
+    image1 = models.ImageField(upload_to='images/products/', verbose_name='Изображение')
+    image2 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    image3 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    image4 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products', verbose_name='Категория')
+    size = models.CharField(max_length=123)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['-created_at']
+
+
+class Industry(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Производство'
+        verbose_name_plural = 'Производства'
+
+
+class Application(models.Model):
+    first_name = models.CharField(max_length=123, verbose_name='Имя')
+    phone = models.CharField(max_length=123, verbose_name='Номер телефона')
+    email = models.EmailField(max_length=123, verbose_name='Почта')
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, verbose_name='Товар', blank=True, null=True)
+    industry = models.ForeignKey(Industry, on_delete=models.PROTECT, verbose_name='индустрия')
+    comment = models.TextField(verbose_name='Комментарий')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Заявка от {self.first_name}'
+
+    class Meta:
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
+        ordering = ['-created_at']
+
+
+class CategoryVacancy(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Категория для вакансий'
+        verbose_name_plural = 'Категории для вакансий'
+        ordering = ['-created_at']
+
+
+class Vacancy(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    mini_description = models.CharField(max_length=123, verbose_name='мини название')
+    description = RichTextField(verbose_name='Описание')
+    category = models.ForeignKey(CategoryVacancy, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
+        ordering = ['-created_at']
+
+
+class SiteContent(models.Model):
+    original_text = models.TextField(verbose_name="Оригинальный текст",
+                                     help_text="Оригинальный текст, который отображается на сайте.",
+                                     max_length=20000
+                                     )
+    current_text = models.TextField(
+        verbose_name="Текущий текст",
+        help_text="Измененный или текущий текст, который отображается на сайте.",
+        max_length=20000
+    )
+
+    class Meta:
+        verbose_name = "Контент сайта"
+        verbose_name_plural = "Контент сайта"
