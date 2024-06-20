@@ -126,7 +126,7 @@
 						<form method="post" class="cart sticky-top">
 							<div class="dlab-post-title">
 								<h4 class="post-title"><a href="javascript:void(0);">{{ product.title }}</a></h4>
-								<p class="m-b10">{{ product.mini_description }}</p>
+								<p class="m-b10">{{ product.mini_description|safe }}</p>
 								<div class="dlab-divider bg-gray tb15">
 									<i class="icon-dot c-square"></i>
 								</div>

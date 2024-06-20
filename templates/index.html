@@ -303,7 +303,7 @@
 									<a href="services-details.html"><img src="{{ i.image1.url }}" alt=""></a>
 								</div>
 								<div class="dlab-info">
-									<h4 class="title"><a href="services-details.html">{{ i.title }}</a></h4>
+									<h4 class="title"><a href="{% url 'service_detail' i.pk %}">{{ i.title }}</a></h4>
 								</div>
 							</div>
 						</div>

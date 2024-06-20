@@ -74,9 +74,9 @@
 				<div class="pagination-bx clearfix col-md-12 text-center">
 					<ul class="pagination">
 						{% if page_obj.has_previous %}
-							<li class="previous"><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-arrow-left"></i> Предыдущий</a></li>
+							<li class="previous"><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a></li>
 						{% else %}
-							<li class="previous disabled"><a href="javascript:void(0);"><i class="ti-arrow-left"></i> Предыдущий</a></li>
+							<li class="previous disabled"><a href="javascript:void(0);"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a></li>
 						{% endif %}
 
 						{% for i in page_obj.paginator.page_range %}
@@ -88,9 +88,9 @@
 						{% endfor %}
 
 						{% if page_obj.has_next %}
-							<li class="next"><a href="?page={{ page_obj.next_page_number }}">Следующий <i class="ti-arrow-right"></i></a></li>
+							<li class="next"><a href="?page={{ page_obj.next_page_number }}">{% trans 'Следующий' %}<i class="ti-arrow-right"></i></a></li>
 						{% else %}
-							<li class="next disabled"><a href="javascript:void(0);">Следующий <i class="ti-arrow-right"></i></a></li>
+							<li class="next disabled"><a href="javascript:void(0);">{% trans 'Следующий' %} <i class="ti-arrow-right"></i></a></li>
 						{% endif %}
 					</ul>
 				</div>
