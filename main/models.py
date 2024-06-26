@@ -159,7 +159,7 @@ class SiteSetting(SingletonModel):
     photo_video = models.ImageField(upload_to='images', blank=True, null=True, verbose_name='Название компании')
     description = RichTextField(blank=True, null=True, verbose_name='О нас')
     hours = models.CharField(max_length=123, verbose_name='Рабочие часы')
-    director = models.CharField(max_length=123, verbose_name='Директор')
+    director = models.CharField(max_length=123, verbose_name='Генеральный директор')
     video = models.URLField(verbose_name='Ссылка на ютуб')
     address = models.CharField(max_length=123, verbose_name="Адрес")
     address_map = models.TextField( verbose_name="Адрес на карте", default='''
