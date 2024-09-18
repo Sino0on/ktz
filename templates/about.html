@@ -49,8 +49,97 @@
 							</div>
 						</div>
 					</div>
+					<div class="section-full content-inner bg-white">
+						<div class="container">
+							<div class="section-head text-black text-center">
+								<h2 class="title">{% get_or_create_content 'Мы предоставляем Услуги' %}</h2>
+								<p>{% get_or_create_content 'Описание услуг главная страница' %}</p>
+							</div>
+							<div class="row" id="lightgallery">
+								{% for i in images %}
+								<div class="col-lg-4 col-md-6 col-sm-12 m-b50 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
+									<div class="dlab-box dlab-gallery-box">
+										<div class="dlab-media dlab-img-overlay1 dlab-img-effect">
+											<img src="{{ i.image.url }}" alt="">
+											<div class="overlay-bx">
+												<div class="overlay-icon">
+													<div class="text-white">
+														<span data-exthumbimage="{{ i.image.url }}" data-src="{{ i.image.url }}" class="check-km" title="Factory Managment">
+															<i class="far fa-image icon-bx-xs"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="dez-info p-a30 bg-white">
+											<p class="dez-title m-t0">{{ i.title }}</p>
+
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+<!--					<div class="section-full content-inner-2 portfolio text-uppercase bg-gray" id="portfolio">-->
+<!--						<div class="container">-->
+
+<!--							<div class="clearfix" id="lightgallery">-->
+<!--								{% for i in images %}-->
+<!--								<li class="web design card-container col-lg-4 col-md-6 col-sm-6 p-a0" style="position: absolute; left: 0px; top: 0px;">-->
+<!--									<div class="dlab-box dlab-gallery-box">-->
+<!--										<div class="dlab-media dlab-img-overlay1 dlab-img-effect">-->
+<!--											<img src="{{ i.image.url }}" alt="">-->
+<!--											<div class="overlay-bx">-->
+<!--												<div class="overlay-icon">-->
+<!--													<div class="text-white">-->
+<!--														<span data-exthumbimage="{{ i.image.url }}" data-src="{{ i.image.url }}" class="check-km" title="Factory Managment">-->
+<!--															<i class="far fa-image icon-bx-xs"></i>-->
+<!--														</span>-->
+<!--													</div>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="dez-info p-a30 bg-white">-->
+<!--											<p class="dez-title m-t0">{{ i.title }}</p>-->
+
+<!--										</div>-->
+<!--									</div>-->
+<!--								</li>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
+<!--							<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						<br>-->
+<!--						</div>-->
+<!--					</div>-->
 				</div>
 			</div>
+		</div>
 			<!-- About Services info END -->
 			<!-- Counter -->
 

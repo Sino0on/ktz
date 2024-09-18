@@ -157,6 +157,7 @@ class AboutUsView(generic.TemplateView):
         context['category_vac'] = CategoryVacancy.objects.all()
         context['site'] = SiteSetting.objects.all().first()
         context['new_news'] = News.objects.all()[:3]
+        context['images'] = AboutImages.objects.all()
         return context
 
 

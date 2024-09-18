@@ -265,3 +265,15 @@ class SiteContent(models.Model):
     class Meta:
         verbose_name = "Контент сайта"
         verbose_name_plural = "Контент сайта"
+
+
+class AboutImages(models.Model):
+    title = models.CharField(max_length=123)
+    image = models.ImageField(upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Изображение о нас'

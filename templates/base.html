@@ -23,7 +23,26 @@
 
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.float{
+			position:fixed;
+			width:60px;
+			height:60px;
+			bottom:40px;
+			right:40px;
+			background-color:#25d366;
+			color:#FFF;
+			border-radius:50px;
+			text-align:center;
+		  font-size:30px;
+			box-shadow: 2px 2px 3px #999;
+		  z-index:100;
+		}
 
+		.my-float{
+			margin-top:16px;
+		}
+	</style>
 	<!--[if lt IE 9]>
 	<script src="{% static 'js/html5shiv.min.js' %}"></script>
 	<script src="{% static 'js/respond.min.js' %}"></script>
@@ -53,6 +72,7 @@
 
 	<!-- Slider END -->
 	<!-- header -->
+
 	<header class="site-header mo-left header navstyle1 header-bottom">
 		<!-- main header -->
 		<div class="sticky-header main-bar-wraper header-curve navbar-expand-lg">
@@ -173,7 +193,10 @@
 		<!-- main header END -->
 	</header>
 	<!-- header END -->
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<a href="https://api.whatsapp.com/send?phone=+996701450554&text=Здравствуйте, я пишу вам из сайта ktz.kg." class="float" target="_blank">
+	<i class="fa fa-whatsapp my-float"></i>
+	</a>
 	{% block content %}
 	{% endblock %}
 		<!-- Footer -->
