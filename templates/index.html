@@ -420,10 +420,10 @@
 								<div class="item wow bounceInUp" data-wow-duration="2s" data-wow-delay="0.3s">
 									<div class="dlab-box project-bx">
 										<div class="dlab-media radius-sm dlab-img-overlay1 dlab-img-effect zoom"> 
-											<a href="portfolio-details.html"><img src="{{ i.image1.url }}" alt=""></a>
+											<a href="{% url 'project_detail' i.pk %}"><img src="{{ i.image1.url }}" alt=""></a>
 										</div>
 										<div class="dlab-info">
-											<h5 class="dlab-title"><a href="portfolio-details.html">{{ i.title }}</a></h5>
+											<h5 class="dlab-title"><a href="{% url 'project_detail' i.pk %}">{{ i.title }}</a></h5>
 										</div>
 									</div>
 								</div>
