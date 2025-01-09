@@ -9,6 +9,16 @@ services:
       - media:/app/media
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
+    restart: always
 
-volumes:
-  media:
+  postgres:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - .env
+
+    volumes:
+      - "./postgres:/var/lib/postgresql/data"
+
