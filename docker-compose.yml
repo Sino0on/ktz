@@ -3,12 +3,12 @@ version: '3.8'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8018
     volumes:
       - .:/app
       - ./media:/app/media
     ports:
-      - "8000:8000"
+      - "8018:8018"
     depends_on:
       - postgres
     restart: always
