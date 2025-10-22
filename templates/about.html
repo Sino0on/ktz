@@ -85,6 +85,48 @@
 
 					  </div>
 					</div>
+					<style>
+  /* Единый размер превью в галерее */
+  #lightgallery .dlab-media{
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  /* Вариант 1 (современный): фиксируем соотношение сторон */
+  #lightgallery .dlab-media {
+    aspect-ratio: 16/9; /* можешь поставить 4/3 или 1/1 */
+  }
+  #lightgallery .dlab-media img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* аккуратно обрежет без искажений */
+    display: block;
+  }
+
+  /* Дополнительно: одинаковая высота подписи, чтобы карточки были ровными */
+  #lightgallery .dlab-box{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  #lightgallery .dez-info{
+    min-height: 64px;   /* подгони под свои заголовки */
+  }
+
+  /* Если нужен fallback без aspect-ratio (старые браузеры) — раскомментируй: */
+  /*
+  #lightgallery .dlab-media img{
+    width:100%;
+    height:280px;       // единая высота превью
+    object-fit:cover;
+  }
+  @media (min-width:992px){ #lightgallery .dlab-media img{ height:320px; } }
+  @media (max-width:575.98px){ #lightgallery .dlab-media img{ height:220px; } }
+  */
+</style>
 
 					<div class="section-full content-inner bg-white">
 						<div class="container">
