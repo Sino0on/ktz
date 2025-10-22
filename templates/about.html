@@ -49,6 +49,43 @@
 							</div>
 						</div>
 					</div>
+					<div class="container my-5">
+<!--					  <h2 class="mb-4 text-center">Документы компании</h2>-->
+					  <div class="row justify-content-center">
+
+						<!-- PDF Card 1 -->
+						<div class="col-md-4 mb-4">
+						  <div class="card shadow-sm h-100 border-0 text-center">
+							<div class="card-body">
+							  <i class="bi bi-file-earmark-pdf text-danger" style="font-size: 3rem;"></i>
+							  <h5 class="card-title mt-3">Свидетельство о дилерстве 2025г</h5>
+<!--							  <p class="card-text text-muted"></p>-->
+							  <a href="{% static 'svidetelstvo.pdf' %}" target="_blank" class="btn btn-outline-primary">
+								<i class="bi bi-box-arrow-up-right me-1"></i> Открыть PDF
+							  </a>
+							</div>
+						  </div>
+						</div>
+
+						<!-- PDF Card 2 -->
+						<div class="col-md-4 mb-4">
+						  <div class="card shadow-sm h-100 border-0 text-center">
+							<div class="card-body">
+							  <i class="bi bi-file-earmark-pdf text-danger" style="font-size: 3rem;"></i>
+							  <h5 class="card-title mt-3">Сертификат КНР</h5>
+<!--							  <p class="card-text text-muted">Полный список трансформаторов и технических характеристик.</p>-->
+							  <a href="{% static 'sertificat.pdf' %}" target="_blank" class="btn btn-outline-primary">
+								<i class="bi bi-box-arrow-up-right me-1"></i> Открыть PDF
+							  </a>
+							</div>
+						  </div>
+						</div>
+
+
+
+					  </div>
+					</div>
+
 					<div class="section-full content-inner bg-white">
 						<div class="container">
 
@@ -61,7 +98,7 @@
 											<div class="overlay-bx">
 												<div class="overlay-icon">
 													<div class="text-white">
-														<span data-exthumbimage="{{ i.image.url }}" data-src="{{ i.image.url }}" class="check-km" title="Factory Managment">
+														<span data-exthumbimage="{{ i.image.url }}" data-src="{{ i.image.url }}" class="check-km" title="">
 															<i class="far fa-image icon-bx-xs"></i>
 														</span>
 													</div>
