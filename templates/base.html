@@ -176,10 +176,8 @@
 								<div class="language-selector">
 									<select name="language" onchange="this.form.submit()">
 										{% get_current_language as LANGUAGE_CODE %}
-										<option value="ru" {% if LANGUAGE_CODE=='ru' %}selected{% endif %}>{% trans
-											'Русский' %}</option>
-										<option value="ky" {% if LANGUAGE_CODE=='ky' %}selected{% endif %}>{% trans
-											'Кыргызский' %}</option>
+										<option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>{% trans 'Русский' %}</option>
+										<option value="ky" {% if LANGUAGE_CODE == 'ky' %}selected{% endif %}>{% trans 'Кыргызский' %}</option>
 									</select>
 								</div>
 							</form>
