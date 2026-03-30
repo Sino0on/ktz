@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,23 +25,23 @@
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
-		.float{
-			position:fixed;
-			width:60px;
-			height:60px;
-			bottom:40px;
-			right:40px;
-			background-color:#25d366;
-			color:#FFF;
-			border-radius:50px;
-			text-align:center;
-		  font-size:30px;
+		.float {
+			position: fixed;
+			width: 60px;
+			height: 60px;
+			bottom: 40px;
+			right: 40px;
+			background-color: #25d366;
+			color: #FFF;
+			border-radius: 50px;
+			text-align: center;
+			font-size: 30px;
 			box-shadow: 2px 2px 3px #999;
-		  z-index:100;
+			z-index: 100;
 		}
 
-		.my-float{
-			margin-top:16px;
+		.my-float {
+			margin-top: 16px;
 		}
 	</style>
 	<!--[if lt IE 9]>
@@ -55,382 +56,409 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/templete.css' %}">
 	<!-- Google Font -->
 	<style>
-	@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Playfair+Display:400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+		@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Playfair+Display:400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
 	</style>
 
 	<!-- REVOLUTION SLIDER CSS -->
 	<link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/revolution.min.css' %}">
 
 </head>
+
 <body id="bg">
-<div class="page-wraper">
-<div id="loading-area" class="solar-loading"></div>
+	<div class="page-wraper">
+		<div id="loading-area" class="solar-loading"></div>
 
-	<!-- Slider -->
-	{% block banner %}
-	{% endblock %}
+		<!-- Slider -->
+		{% block banner %}
+		{% endblock %}
 
-	<!-- Slider END -->
-	<!-- header -->
+		<!-- Slider END -->
+		<!-- header -->
 
-	<header class="site-header mo-left header navstyle1 header-bottom">
-		<!-- main header -->
-		<div class="sticky-header main-bar-wraper header-curve navbar-expand-lg">
-			<div class="main-bar clearfix bg-primary">
-				<div class="container clearfix">
-					<!-- website logo -->
-					<div class="logo-header mostion logo-dark">
-						<a href="{% url 'home' %}"><img src="{% static 'images/logo-4.png' %}" alt=""></a>
-					</div>
-					<!-- nav toggle button -->
-					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<!-- extra nav -->
-					<div class="extra-nav">
-						<div class="extra-cell">
-							<button id="quik-search-btn" type="button" class="site-button-link"><i class="la la-search"></i></button>
+		<header class="site-header mo-left header navstyle1 header-bottom">
+			<!-- main header -->
+			<div class="sticky-header main-bar-wraper header-curve navbar-expand-lg">
+				<div class="main-bar clearfix bg-primary">
+					<div class="container clearfix">
+						<!-- website logo -->
+						<div class="logo-header mostion logo-dark">
+							<a href="{% url 'home' %}"><img src="{% static 'images/logo-4.png' %}" alt=""></a>
 						</div>
-					</div>
-					<!-- Quik search -->
-					<div class="dlab-quik-search ">
-						<form action="{% url 'shop' %}?">
-							<input name="title" value="" type="text" class="form-control" placeholder="{% trans 'Введите для поиска' %}">
-							<span id="quik-search-remove"><i class="ti-close"></i></span>
-						</form>
-					</div>
-					<!-- main nav -->
-					<div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-						<div class="logo-header d-md-block d-lg-none">
-							<a href="index.html"><img src="{% static 'images/logo-4.png' %}" alt=""></a>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="active has-mega-menu"> <a href="/">{% trans 'Домой' %}</a>
-
-							</li>
-							<li>
-								<a href="{% url 'services' %}">{% trans 'Сервисы' %}<i class="fas fa-chevron-down"></i></a>
-								<ul class="sub-menu tab-content">
-									<li>
-										<a href="{% url 'services' %}">{% trans 'Все сервисы' %} <i class="fas fa-angle-right"></i></a>
-										<ul class="sub-menu">
-											{% for i in services %}
-											<li><a href="{% url 'service_detail' i.pk %}">{{ i.title }}</a></li>
-											{% endfor %}
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li class="has-mega-menu"> <a href="{% url 'vacancies' %}">{% trans 'Вакансии' %}<i class="fas fa-chevron-down"></i></a>
-								<ul class="mega-menu">
-									<li>
-										<a href="{% url 'vacancies' %}">{% trans 'Вакансии' %}</a>
-										<ul>
-											{% for i in category_vac %}
-											<li><a href="{% url 'vacancies' %}?category={{i.pk}}">{{ i.title }}</a></li>
-											{% endfor %}
-										</ul>
-									</li>
-
-								</ul>
-							</li>
-							<li>
-								<a href="{% url 'shop' %}">{% trans 'Магазин' %}</a>
-							</li>
-							<li class="has-mega-menu"> <a href="{% url 'news' %}">{% trans 'Новости' %}</a>
-
-							</li>
-							<li class="has-mega-menu"> <a href="{% url 'projects' %}">{% trans 'Проекты' %}<i class="fas fa-chevron-down"></i></a>
-								<ul class="mega-menu">
-									<li><a href="{% url 'projects' %}">{% trans 'Проекты' %}</a>
-										<ul>
-											{% for i in projects %}
-											<li><a href="{% url 'project_detail' i.pk %}"><i class="ti-mouse"></i> {{ i.title }}</a></li>
-											{% endfor %}
-										</ul>
-									</li>
-
-								</ul>
-							</li>
-							<li>
-								<a href="{% url 'about' %}">{% trans 'О нас' %}</a>
-
-							</li>
-						</ul>
-						<form method="post" action="{% url 'set_language' %}">
-							{% csrf_token %}
-							<div class="language-selector">
-								<select name="language" onchange="this.form.submit()">
-									{% get_current_language as LANGUAGE_CODE %}
-									<option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>{% trans 'Русский' %}</option>
-									<option value="ky" {% if LANGUAGE_CODE == 'ky' %}selected{% endif %}>{% trans 'Кыргызский' %}</option>
-								</select>
+						<!-- nav toggle button -->
+						<button class="navbar-toggler collapsed navicon justify-content-end" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<!-- extra nav -->
+						<div class="extra-nav">
+							<div class="extra-cell">
+								<button id="quik-search-btn" type="button" class="site-button-link"><i
+										class="la la-search"></i></button>
 							</div>
-						</form>
+						</div>
+						<!-- Quik search -->
+						<div class="dlab-quik-search ">
+							<form action="{% url 'shop' %}?">
+								<input name="title" value="" type="text" class="form-control"
+									placeholder="{% trans 'Введите для поиска' %}">
+								<span id="quik-search-remove"><i class="ti-close"></i></span>
+							</form>
+						</div>
+						<!-- main nav -->
+						<div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+							<div class="logo-header d-md-block d-lg-none">
+								<a href="index.html"><img src="{% static 'images/logo-4.png' %}" alt=""></a>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active has-mega-menu"> <a href="/">{% trans 'Домой' %}</a>
 
-						<div class="dlab-social-icon">
-							<ul>
-								<li><a class="site-button facebook sharp-sm fab fa-facebook-f" href="javascript:void(0);"></a></li>
-								<li><a class="site-button twitter sharp-sm fab fa-twitter" href="javascript:void(0);"></a></li>
-								<li><a class="site-button linkedin sharp-sm fab fa-linkedin-in" href="javascript:void(0);"></a></li>
-								<li><a class="site-button instagram sharp-sm fab fa-instagram" href="javascript:void(0);"></a></li>
+								</li>
+								<li>
+									<a href="{% url 'services' %}">{% trans 'Сервисы' %}<i
+											class="fas fa-chevron-down"></i></a>
+									<ul class="sub-menu tab-content">
+										<li>
+											<a href="{% url 'services' %}">{% trans 'Все сервисы' %} <i
+													class="fas fa-angle-right"></i></a>
+											<ul class="sub-menu">
+												{% for i in services %}
+												<li><a href="{% url 'service_detail' i.pk %}">{{ i.title }}</a></li>
+												{% endfor %}
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="has-mega-menu"> <a href="{% url 'vacancies' %}">{% trans 'Вакансии' %}<i
+											class="fas fa-chevron-down"></i></a>
+									<ul class="mega-menu">
+										<li>
+											<a href="{% url 'vacancies' %}">{% trans 'Вакансии' %}</a>
+											<ul>
+												{% for i in category_vac %}
+												<li><a href="{% url 'vacancies' %}?category={{i.pk}}">{{ i.title }}</a>
+												</li>
+												{% endfor %}
+											</ul>
+										</li>
+
+									</ul>
+								</li>
+								<li>
+									<a href="{% url 'shop' %}">{% trans 'Магазин' %}</a>
+								</li>
+								<li class="has-mega-menu"> <a href="{% url 'news' %}">{% trans 'Новости' %}</a>
+
+								</li>
+								<li class="has-mega-menu"> <a href="{% url 'projects' %}">{% trans 'Проекты' %}<i
+											class="fas fa-chevron-down"></i></a>
+									<ul class="mega-menu">
+										<li><a href="{% url 'projects' %}">{% trans 'Проекты' %}</a>
+											<ul>
+												{% for i in projects %}
+												<li><a href="{% url 'project_detail' i.pk %}"><i class="ti-mouse"></i>
+														{{ i.title }}</a></li>
+												{% endfor %}
+											</ul>
+										</li>
+
+									</ul>
+								</li>
+								<li>
+									<a href="{% url 'about' %}">{% trans 'О нас' %}</a>
+
+								</li>
 							</ul>
+							<form method="post" action="{% url 'set_language' %}">
+								{% csrf_token %}
+								<div class="language-selector">
+									<select name="language" onchange="this.form.submit()">
+										{% get_current_language as LANGUAGE_CODE %}
+										<option value="ru" {% if LANGUAGE_CODE=='ru' %}selected{% endif %}>{% trans
+											'Русский' %}</option>
+										<option value="ky" {% if LANGUAGE_CODE=='ky' %}selected{% endif %}>{% trans
+											'Кыргызский' %}</option>
+									</select>
+								</div>
+							</form>
+
+							<div class="dlab-social-icon">
+								<ul>
+									<li><a class="site-button facebook sharp-sm fab fa-facebook-f"
+											href="javascript:void(0);"></a></li>
+									<li><a class="site-button twitter sharp-sm fab fa-twitter"
+											href="javascript:void(0);"></a></li>
+									<li><a class="site-button linkedin sharp-sm fab fa-linkedin-in"
+											href="javascript:void(0);"></a></li>
+									<li><a class="site-button instagram sharp-sm fab fa-instagram"
+											href="javascript:void(0);"></a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<style>
-    .language-selector select {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        padding: 5px;
-        border-radius: 5px;
-    }
-</style>
-		<!-- main header END -->
-	</header>
-	<!-- header END -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<a href="https://api.whatsapp.com/send?phone=+996775160402&text=Здравствуйте, я пишу вам из сайта ktz.kg." class="float" target="_blank">
-	<i class="fa fa-whatsapp my-float"></i>
-	</a>
-	{% block content %}
-	{% endblock %}
+			<style>
+				.language-selector select {
+					background-color: #fff;
+					border: 1px solid #ddd;
+					padding: 5px;
+					border-radius: 5px;
+				}
+			</style>
+			<!-- main header END -->
+		</header>
+		<!-- header END -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<a href="https://api.whatsapp.com/send?phone=+996775160402&text=Здравствуйте, я пишу вам из сайта ktz.kg."
+			class="float" target="_blank">
+			<i class="fa fa-whatsapp my-float"></i>
+		</a>
+		{% block content %}
+		{% endblock %}
 		<!-- Footer -->
-    <footer class="site-footer">
-		<div class="section-full p-t50 p-b20 bg-primary text-white overlay-primary-dark footer-info-bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
-						<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
-							<div class="icon-content">
-								<h5 class="dlab-tilte">
-									<span class="icon-sm"><i class="ti-location-pin"></i></span>
-									{% trans 'Адрес компании' %}
-								</h5>
-								<p class="op7">{{ site.address }}</p>
+		<footer class="site-footer">
+			<div class="section-full p-t50 p-b20 bg-primary text-white overlay-primary-dark footer-info-bar">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInLeft" data-wow-duration="2s"
+							data-wow-delay="0.3s">
+							<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+								<div class="icon-content">
+									<h5 class="dlab-tilte">
+										<span class="icon-sm"><i class="ti-location-pin"></i></span>
+										{% trans 'Адрес компании' %}
+									</h5>
+									<p class="op7">{{ site.address }}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.3s">
-						<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
-							<div class="icon-content">
-								<h5 class="dlab-tilte">
-									<span class="icon-sm"><i class="ti-email"></i></span>
-									{% trans 'Почта' %}
-								</h5>
-								<p class="m-b0 op7">{{ site.emails }}</p>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInUp" data-wow-duration="2s"
+							data-wow-delay="0.3s">
+							<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+								<div class="icon-content">
+									<h5 class="dlab-tilte">
+										<span class="icon-sm"><i class="ti-email"></i></span>
+										{% trans 'Почта' %}
+									</h5>
+									<p class="m-b0 op7">{{ site.emails }}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s">
-						<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
-							<div class="icon-content">
-								<h5 class="dlab-tilte">
-									<span class="icon-sm"><i class="ti-mobile"></i></span>
-									{% trans 'Номера' %}
-								</h5>
-								<p class="m-b0 op7">{{ site.contacts }}</p>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInDown" data-wow-duration="2s"
+							data-wow-delay="0.3s">
+							<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+								<div class="icon-content">
+									<h5 class="dlab-tilte">
+										<span class="icon-sm"><i class="ti-mobile"></i></span>
+										{% trans 'Номера' %}
+									</h5>
+									<p class="m-b0 op7">{{ site.contacts }}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.3s">
-						<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
-							<div class="icon-content">
-								<h5 class="dlab-tilte">
-									<span class="icon-sm"><i class="ti-alarm-clock"></i></span>
-									{% trans 'Рабочие часы' %}
-								</h5>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 m-b30 wow fadeInRight" data-wow-duration="2s"
+							data-wow-delay="0.3s">
+							<div class="icon-bx-wraper bx-style-1 p-a20 radius-sm br-col-w1">
+								<div class="icon-content">
+									<h5 class="dlab-tilte">
+										<span class="icon-sm"><i class="ti-alarm-clock"></i></span>
+										{% trans 'Рабочие часы' %}
+									</h5>
 
-								<p class="m-b0 op7">{{ site.hours }}</p>
+									<p class="m-b0 op7">{{ site.hours }}</p>
 
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-					<div class="col-lg-3 col-md-6 col-sm-12 wow fadeIn" data-wow-delay="0.2s">
-                        <div class="widget border-0">
-                            <h6 class="m-b20 text-white font-weight-300 text-uppercase">{% trans 'Полезные ссылки' %}</h6>
-                            <ul class="list-2">
-                                <li><a href="{% url 'about' %}">{% trans 'О нас' %}</a></li>
-                                <li><a href="{% url 'news' %}">{% trans 'Новости' %}</a></li>
-                                <li><a href="{% url 'services' %}">{% trans 'Сервисы' %}</a></li>
-                                <li><a href="{% url 'about' %}">{% trans 'Политика Конфиденциальности' %}</a></li>
-                                <li><a href="{% url 'projects' %}">{% trans 'Проекты' %} </a></li>
-								<li><a href="{% url 'contact' %}">{% trans 'Оставить заявку' %} </a></li>
-                                <li><a href="{% url 'shop' %}">{% trans 'Магазин' %}</a></li>
-                                <li><a href="{% url 'contact' %}">{% trans 'Контакты' %}</a></li>
-                                <li><a href="{% url 'projects' %}">{% trans 'Портфолио' %}</a></li>
-                                <li><a href="{% url 'about' %}#team">{% trans 'Команда' %}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-					<div class="col-lg-5 col-md-12 col-sm-12 wow fadeIn" data-wow-delay="0.6s">
-						<div class="icon-bx-wraper bx-style-1 m-b15 p-a30 radius-sm br-col-w1 bg-tpw1">
-							<h5 class="text-white font-weight-300">{% trans 'ОФИЦИАЛЬНЫЙ ДИЛЕР В КЫРГЫЗСТАНЕ «МИНСКОГО ЭЛЕКТРОТЕХНИЧЕСКОГО ЗАВОДА ИМ. В.И. КОЗЛОВА»' %}</h5>
-							<p>{% trans 'Трансформаторы изготавливаются в герметичном исполнении с полным заполнением маслом, без расширителя и без воздушной или газовой подушки. - Контакт масла с окружающей средой полностью отсутствует, что исключает увлажнение, окисление и шламообразование масла. - Перед заливкой масло дегазируется, заливка его в бак производится в специальной вакуумзаливочной камере тем самым предотвращается окисление масла, обеспечивается высокая электрическая прочность изоляции трансформатора.' %}</p>
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-sm-12 wow fadeIn" data-wow-delay="0.2s">
+							<div class="widget border-0">
+								<h6 class="m-b20 text-white font-weight-300 text-uppercase">{% trans 'Полезные ссылки'
+									%}</h6>
+								<ul class="list-2">
+									<li><a href="{% url 'about' %}">{% trans 'О нас' %}</a></li>
+									<li><a href="{% url 'news' %}">{% trans 'Новости' %}</a></li>
+									<li><a href="{% url 'services' %}">{% trans 'Сервисы' %}</a></li>
+									<li><a href="{% url 'about' %}">{% trans 'Политика Конфиденциальности' %}</a></li>
+									<li><a href="{% url 'projects' %}">{% trans 'Проекты' %} </a></li>
+									<li><a href="{% url 'contact' %}">{% trans 'Оставить заявку' %} </a></li>
+									<li><a href="{% url 'shop' %}">{% trans 'Магазин' %}</a></li>
+									<li><a href="{% url 'contact' %}">{% trans 'Контакты' %}</a></li>
+									<li><a href="{% url 'projects' %}">{% trans 'Портфолио' %}</a></li>
+									<li><a href="{% url 'about' %}#team">{% trans 'Команда' %}</a></li>
+								</ul>
+							</div>
 						</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer bottom part -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 text-left "> <span>Copyright © 2024 <a href="https:t.me/Sino0on" target="_blank">Кубанов Дастан</a>. Все права защищены.</span> </div>
-                    <div class="col-md-6 col-sm-6 text-right ">
-						<div class="widget-link ">
-							<ul>
 
-							</ul>
+
+					</div>
+				</div>
+			</div>
+			<!-- footer bottom part -->
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 text-left "> <span>Copyright © 2024 <a href="https:t.me/Sino0on"
+									target="_blank">Кубанов Дастан</a>. Все права защищены.</span> </div>
+						<div class="col-md-6 col-sm-6 text-right ">
+							<div class="widget-link ">
+								<ul>
+
+								</ul>
+							</div>
 						</div>
 					</div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer END -->
-    <button class="scroltop style2 radius" type="button"><i class="fas fa-arrow-up"></i></button>
-</div>
-<!-- JAVASCRIPT FILES ========================================= -->
-<!-- JAVASCRIPT FILES ========================================= -->
-<script src="{% static 'js/jquery.min.js' %}"></script><!-- JQUERY.MIN JS -->
-<script src="{% static 'plugins/wow/wow.js' %}"></script><!-- WOW JS -->
+				</div>
+			</div>
+		</footer>
+		<!-- Footer END -->
+		<button class="scroltop style2 radius" type="button"><i class="fas fa-arrow-up"></i></button>
+	</div>
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="{% static 'js/jquery.min.js' %}"></script><!-- JQUERY.MIN JS -->
+	<script src="{% static 'plugins/wow/wow.js' %}"></script><!-- WOW JS -->
 
-<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script><!-- BOOTSTRAP.MIN JS -->
-<script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script><!-- FORM JS -->
-<script src="{% static 'plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script><!-- FORM JS -->
-<script src="{% static 'plugins/magnific-popup/magnific-popup.js' %}"></script><!-- MAGNIFIC POPUP JS -->
-<script src="{% static 'plugins/counter/waypoints-min.js' %}"></script><!-- WAYPOINTS JS -->
-<script src="{% static 'plugins/counter/counterup.min.js' %}"></script><!-- COUNTERUP JS -->
-<script src="{% static 'plugins/imagesloaded/imagesloaded.js' %}"></script><!-- {% static 'imagesLOADED -->
-<script src="{% static 'plugins/masonry/masonry-3.1.4.js' %}"></script><!-- MASONRY -->
-<script src="{% static 'plugins/masonry/masonry.filter.js' %}"></script><!-- MASONRY -->
-<script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script><!-- OWL SLIDER -->
-<script src="{% static 'plugins/lightgallery/js/lightgallery-all.min.js' %}"></script><!-- Lightgallery -->
-<script src="{% static 'plugins/scroll/scrollbar.min.js' %}"></script><!-- scroll -->
-<script src="{% static 'js/custom.js' %}"></script><!-- CUSTOM FUCTIONS  -->
-<script src="{% static 'js/dz.carousel.min.js' %}"></script><!-- SORTCODE FUCTIONS  -->
-<script src="{% static 'plugins/countdown/jquery.countdown.js' %}"></script><!-- COUNTDOWN FUCTIONS  -->
-<script src="{% static 'js/dz.ajax.js' %}"></script><!-- CONTACT JS  -->
-<script src="{% static 'plugins/rangeslider/rangeslider.js' %}" ></script><!-- Rangeslider -->
+	<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script><!-- BOOTSTRAP.MIN JS -->
+	<script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script><!-- FORM JS -->
+	<script src="{% static 'plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script><!-- FORM JS -->
+	<script src="{% static 'plugins/magnific-popup/magnific-popup.js' %}"></script><!-- MAGNIFIC POPUP JS -->
+	<script src="{% static 'plugins/counter/waypoints-min.js' %}"></script><!-- WAYPOINTS JS -->
+	<script src="{% static 'plugins/counter/counterup.min.js' %}"></script><!-- COUNTERUP JS -->
+	<script src="{% static 'plugins/imagesloaded/imagesloaded.js' %}"></script><!-- {% static 'imagesLOADED -->
+	<script src="{% static 'plugins/masonry/masonry-3.1.4.js' %}"></script><!-- MASONRY -->
+	<script src="{% static 'plugins/masonry/masonry.filter.js' %}"></script><!-- MASONRY -->
+	<script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script><!-- OWL SLIDER -->
+	<script src="{% static 'plugins/lightgallery/js/lightgallery-all.min.js' %}"></script><!-- Lightgallery -->
+	<script src="{% static 'plugins/scroll/scrollbar.min.js' %}"></script><!-- scroll -->
+	<script src="{% static 'js/custom.js' %}"></script><!-- CUSTOM FUCTIONS  -->
+	<script src="{% static 'js/dz.carousel.min.js' %}"></script><!-- SORTCODE FUCTIONS  -->
+	<script src="{% static 'plugins/countdown/jquery.countdown.js' %}"></script><!-- COUNTDOWN FUCTIONS  -->
+	<script src="{% static 'js/dz.ajax.js' %}"></script><!-- CONTACT JS  -->
+	<script src="{% static 'plugins/rangeslider/rangeslider.js' %}"></script><!-- Rangeslider -->
 
-<script src="{% static 'js/jquery.lazy.min.js' %}"></script>
-<!-- REVOLUTION JS FILES -->
-<script src="{% static 'plugins/revolution/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
-<!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
-<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
-<script src="{% static 'js/rev.slider.js' %}"></script>
-<script>
-jQuery(document).ready(function() {
-	'use strict';
-	dz_rev_slider_1();
-	$('.lazy').Lazy();
-});	/*ready*/
-</script>
-{% if imageShop %}
-<script>
-$(document).ready(function() {
+	<script src="{% static 'js/jquery.lazy.min.js' %}"></script>
+	<!-- REVOLUTION JS FILES -->
+	<script src="{% static 'plugins/revolution/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+	<script src="{% static 'plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+	<!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+	<script
+		src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+	<script src="{% static 'plugins/revolution/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+	<script src="{% static 'js/rev.slider.js' %}"></script>
+	<script>
+		jQuery(document).ready(function () {
+			'use strict';
+			dz_rev_slider_1();
+			$('.lazy').Lazy();
+		});	/*ready*/
+	</script>
+	{% if imageShop %}
+	<script>
+		$(document).ready(function () {
 
-  var sync1 = $("#sync1");
-  var sync2 = $("#sync2");
-  var slidesPerPage = 4; //globaly define number of elements per page
-  var syncedSecondary = true;
+			var sync1 = $("#sync1");
+			var sync2 = $("#sync2");
+			var slidesPerPage = 4; //globaly define number of elements per page
+			var syncedSecondary = true;
 
-	  sync1.owlCarousel({
-		items : 1,
-		slideSpeed : 2000,
-		nav: true,
-		autoplay: false,
-		dots: false,
-		loop: true,
-		responsiveRefreshRate : 200,
-		navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
-	  }).on('changed.owl.carousel', syncPosition);
+			sync1.owlCarousel({
+				items: 1,
+				slideSpeed: 2000,
+				nav: true,
+				autoplay: false,
+				dots: false,
+				loop: true,
+				responsiveRefreshRate: 200,
+				navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
+			}).on('changed.owl.carousel', syncPosition);
 
-	  sync2.on('initialized.owl.carousel', function () {
-		  sync2.find(".owl-item").eq(0).addClass("current");
-		}).owlCarousel({
-		items : slidesPerPage,
-		dots: false,
-		nav: false,
-		margin:5,
-		smartSpeed: 200,
-		slideSpeed : 500,
-		slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
-		responsiveRefreshRate : 100
-	  }).on('changed.owl.carousel', syncPosition2);
+			sync2.on('initialized.owl.carousel', function () {
+				sync2.find(".owl-item").eq(0).addClass("current");
+			}).owlCarousel({
+				items: slidesPerPage,
+				dots: false,
+				nav: false,
+				margin: 5,
+				smartSpeed: 200,
+				slideSpeed: 500,
+				slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+				responsiveRefreshRate: 100
+			}).on('changed.owl.carousel', syncPosition2);
 
-  function syncPosition(el) {
-    //if you set loop to false, you have to restore this next line
-    //var current = el.item.index;
+			function syncPosition(el) {
+				//if you set loop to false, you have to restore this next line
+				//var current = el.item.index;
 
-    //if you disable loop you have to comment this block
-    var count = el.item.count-1;
-    var current = Math.round(el.item.index - (el.item.count/2) - .5);
+				//if you disable loop you have to comment this block
+				var count = el.item.count - 1;
+				var current = Math.round(el.item.index - (el.item.count / 2) - .5);
 
-    if(current < 0) {
-      current = count;
-    }
-    if(current > count) {
-      current = 0;
-    }
+				if (current < 0) {
+					current = count;
+				}
+				if (current > count) {
+					current = 0;
+				}
 
-    //end block
+				//end block
 
-    sync2
-      .find(".owl-item")
-      .removeClass("current")
-      .eq(current)
-      .addClass("current");
-    var onscreen = sync2.find('.owl-item.active').length - 1;
-    var start = sync2.find('.owl-item.active').first().index();
-    var end = sync2.find('.owl-item.active').last().index();
+				sync2
+					.find(".owl-item")
+					.removeClass("current")
+					.eq(current)
+					.addClass("current");
+				var onscreen = sync2.find('.owl-item.active').length - 1;
+				var start = sync2.find('.owl-item.active').first().index();
+				var end = sync2.find('.owl-item.active').last().index();
 
-    if (current > end) {
-      sync2.data('owl.carousel').to(current, 100, true);
-    }
-    if (current < start) {
-      sync2.data('owl.carousel').to(current - onscreen, 100, true);
-    }
-  }
+				if (current > end) {
+					sync2.data('owl.carousel').to(current, 100, true);
+				}
+				if (current < start) {
+					sync2.data('owl.carousel').to(current - onscreen, 100, true);
+				}
+			}
 
-  function syncPosition2(el) {
-    if(syncedSecondary) {
-      var number = el.item.index;
-      sync1.data('owl.carousel').to(number, 100, true);
-    }
-  }
+			function syncPosition2(el) {
+				if (syncedSecondary) {
+					var number = el.item.index;
+					sync1.data('owl.carousel').to(number, 100, true);
+				}
+			}
 
-  sync2.on("click", ".owl-item", function(e){
-		e.preventDefault();
-		var number = $(this).index();
-		//sync1.data('owl.carousel').to(number, 300, true);
+			sync2.on("click", ".owl-item", function (e) {
+				e.preventDefault();
+				var number = $(this).index();
+				//sync1.data('owl.carousel').to(number, 300, true);
 
-		sync1.data('owl.carousel').to(number, 300, true);
+				sync1.data('owl.carousel').to(number, 300, true);
 
-	});
-});
+			});
+		});
 
-</script>
-{% endif %}
+	</script>
+	{% endif %}
 </body>
+
 </html>
