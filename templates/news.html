@@ -1,143 +1,59 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %}
-ОСОО КТЗ
-{% endblock %}
+{% block title %}{% trans 'Новости' %} — ОСОО КТЗ{% endblock %}
 
 {% block content %}
-    <!-- Content -->
-    <div class="page-content bg-white">
-        <!-- inner page banner -->
-        <div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url({% static 'images/banner/bnr1.jpg' %});">
-            <div class="container">
-                <div class="dlab-bnr-inr-entry">
-                    <h1 class="text-white">Новостной блог</h1>
-					<!-- Breadcrumb row -->
-					<div class="breadcrumb-row">
-						<ul class="list-inline">
-							<li><a href="index.html">Домой</a></li>
-							<li>Новостной блог</li>
-						</ul>
+{% trans 'Новости' as t_title %}
+{% include 'partials/page_hero.html' with title=t_title %}
+
+<section class="section">
+	<div class="container">
+		<div class="with-sidebar with-sidebar--right">
+			<div>
+				{% if request.GET.title %}
+				<div class="toolbar">
+					<span class="toolbar__count">{% trans 'Поиск' %}: «{{ request.GET.title }}»</span>
+					<a class="toolbar__reset" href="{% url 'news' %}"><i class="fas fa-times"></i> {% trans 'Сбросить фильтры' %}</a>
+				</div>
+				{% endif %}
+				{% for i in news %}
+				<a class="news-row reveal" href="{% url 'news_detail' i.pk %}">
+					<div class="media media--wide"><img src="{{ i.main_image.url }}" alt="" loading="lazy"></div>
+					<div>
+						<div class="news-card__meta" style="margin-top:0"><span>{{ i.created_at|date:"d.m.Y" }}</span><span>{{ i.author }}</span></div>
+						<h3>{{ i.title }}</h3>
+						<p>{{ i.short_description|truncatewords:36 }}</p>
+						<span class="link-arrow">{% trans 'Подробнее' %} <i class="fas fa-arrow-right"></i></span>
 					</div>
-					<!-- Breadcrumb row END -->
-                </div>
-            </div>
-        </div>
-        <!-- inner page banner END -->
-        <div class="content-area">
-            <div class="container">
-                <div class="row">
-                    <!-- Left part start -->
-                    <div class="col-xl-9 col-lg-8 col-md-7">
-						{% for i in news %}
-                        <div class="blog-post blog-lg blog-rounded">
-							<div class="dlab-post-media dlab-img-effect zoom-slow"> 
-								<a href="{% url 'news_detail' i.pk %}"><img src="{{ i.main_image.url }}" alt=""></a>
-							</div>
-							<div class="dlab-info p-a20 border-1">
-								<div class="dlab-post-meta">
-									<ul>
-										<li class="post-date"> {{ i.created_at }} </li>
-										<li class="post-author"> {{ i.author }}</li>
-									</ul>
-								</div>
-								<div class="dlab-post-title">
-									<h4 class="post-title"><a href="">{{ i.title }}</a></h4>
-								</div>
-								<div class="dlab-post-text">
-									<p>{{ i.short_description }}</p>
-								</div>
-								<div class="dlab-post-readmore"> 
-									<a href="{% url 'news_detail' i.pk %}" title="READ MORE" rel="bookmark" class="site-button">Подробнее
-										<i class="ti-arrow-right"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						{% endfor %}
-                        <!-- Pagination start -->
-                        <div class="pagination-bx m-b30 clearfix text-center">
-							<ul class="p`agination">
-								{% if page_obj.has_previous %}
-									<li class="previous">
-										<a href="?page={{ page_obj.previous_page_number }}"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a>
-									</li>
-								{% else %}
-									<li class="previous disabled">
-										<a href="javascript:void(0);"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a>
-									</li>
-								{% endif %}
+				</a>
+				{% empty %}
+				<div class="empty"><i class="far fa-newspaper"></i>{% trans 'Ничего не найдено' %}</div>
+				{% endfor %}
+				{% include 'partials/pagination.html' %}
+			</div>
 
-								{% for num in page_obj.paginator.page_range %}
-									{% if page_obj.number == num %}
-										<li class="active"><a href="javascript:void(0);">{{ num }}</a></li>
-									{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-										<li><a href="?page={{ num }}">{{ num }}</a></li>
-									{% endif %}
-								{% endfor %}
-
-								{% if page_obj.has_next %}
-									<li class="next">
-										<a href="?page={{ page_obj.next_page_number }}">{% trans 'Следующий' %} <i class="ti-arrow-right"></i></a>
-									</li>
-								{% else %}
-									<li class="next disabled">
-										<a href="javascript:void(0);">{% trans 'Следующий' %} <i class="ti-arrow-right"></i></a>
-									</li>
-								{% endif %}
-							</ul>
-						</div>
-                        <!-- Pagination END -->
-                    </div>
-                    <!-- Left part END -->
-                    <!-- Side bar start -->
-                    <div class="col-xl-3 col-lg-4 col-md-5">
-                        <aside  class="side-bar sticky-top">
-                            <div class="widget">
-                                <h5 class="widget-title style-1">{% trans 'Поиск' %}</h5>
-                                <div class="search-bx style-1">
-                                    <form role="search" method="get">
-                                        <div class="input-group">
-                                            <input name="title" class="form-control" placeholder="{% trans 'Введите' %}..." type="text">
-                                            <span class="input-group-btn">
-												<button type="submit" class="fas fa-search text-primary"></button>
-                                            </span> 
-										</div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="widget recent-posts-entry">
-                                <h5 class="widget-title style-1">{% trans 'Последние новости' %}</h5>
-                                <div class="widget-post-bx">
-									{% for i in new_news %}
-                                    <div class="widget-post clearfix">
-                                        <div class="dlab-post-media"> 
-											<img src="{{ i.main_image.url }}" width="200" height="143" alt="">
-										</div>
-                                        <div class="dlab-post-info">
-                                            <div class="dlab-post-meta">
-												<ul>
-													<li class="post-date"> {{ i.created_at }}</li>
-													<li class="post-author"> {{ i.author }}</li>
-												</ul>
-											</div>
-											<div class="dlab-post-header">
-                                                <h6 class="post-title"><a href="blog-single-left-sidebar.html">{{ i.short_description }}</a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-									{% endfor %}
-                                </div>
-                            </div>
-
-                        </aside>
-                    </div>
-                    <!-- Side bar END -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Content END-->
-	<!-- Footer -->
-  {% endblock %}
+			<aside class="sidebar">
+				<div class="widget">
+					<div class="widget__title">{% trans 'Поиск' %}</div>
+					<form method="get" class="search-field" role="search">
+						<input name="title" type="search" value="{{ request.GET.title }}" placeholder="{% trans 'Введите' %}…">
+						<button type="submit" aria-label="{% trans 'Поиск' %}"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+				{% if new_news %}
+				<div class="widget">
+					<div class="widget__title">{% trans 'Последние новости' %}</div>
+					{% for i in new_news %}
+					<a class="mini-post" href="{% url 'news_detail' i.pk %}">
+						<img src="{{ i.main_image.url }}" alt="" loading="lazy">
+						<div><h4>{{ i.title }}</h4><span>{{ i.created_at|date:"d.m.Y" }}</span></div>
+					</a>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</aside>
+		</div>
+	</div>
+</section>
+{% endblock %}

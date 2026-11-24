@@ -1,0 +1,22 @@
+{% load i18n %}
+{% if page_obj and page_obj.paginator.num_pages > 1 %}
+<nav class="pager" aria-label="{% trans 'Страницы' %}">
+	{% if page_obj.has_previous %}
+	<a href="?{% for k, v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v|urlencode }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Предыдущий' %}"><i class="fas fa-arrow-left"></i></a>
+	{% else %}
+	<span class="is-disabled"><i class="fas fa-arrow-left"></i></span>
+	{% endif %}
+	{% for num in page_obj.paginator.page_range %}
+		{% if page_obj.number == num %}
+		<span class="is-active" aria-current="page">{{ num }}</span>
+		{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+		<a href="?{% for k, v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v|urlencode }}&{% endif %}{% endfor %}page={{ num }}">{{ num }}</a>
+		{% endif %}
+	{% endfor %}
+	{% if page_obj.has_next %}
+	<a href="?{% for k, v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v|urlencode }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}" aria-label="{% trans 'Следующий' %}"><i class="fas fa-arrow-right"></i></a>
+	{% else %}
+	<span class="is-disabled"><i class="fas fa-arrow-right"></i></span>
+	{% endif %}
+</nav>
+{% endif %}

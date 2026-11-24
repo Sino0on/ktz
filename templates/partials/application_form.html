@@ -1,0 +1,35 @@
+{% load i18n %}
+<form method="post" class="form-card">
+	{% csrf_token %}
+	<span class="eyebrow">{% trans 'Заявка' %}</span>
+	<h2 style="margin-top:14px">{% trans 'Свяжитесь с нами' %}</h2>
+	<p>{% trans 'Оставьте заявку и мы с вами свяжемся' %}</p>
+	<div class="form">
+		<div class="field">
+			<label for="f-name">{% trans 'Имя' %}</label>
+			<input id="f-name" name="first_name" type="text" required autocomplete="name">
+		</div>
+		<div class="field">
+			<label for="f-phone">{% trans 'Номер телефона' %}</label>
+			<input id="f-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+996">
+		</div>
+		<div class="field{% if compact %} field--full{% endif %}">
+			<label for="f-email">{% trans 'Ваша почта' %}</label>
+			<input id="f-email" name="email" type="email" required autocomplete="email">
+		</div>
+		<div class="field{% if compact %} field--full{% endif %}">
+			<label for="f-industry">{% trans 'Выберите тип' %}</label>
+			<select id="f-industry" name="industry" required>
+				<option value="" disabled selected>—</option>
+				{% for i in industry %}<option value="{{ i.pk }}">{{ i.title }}</option>{% endfor %}
+			</select>
+		</div>
+		<div class="field field--full">
+			<label for="f-comment">{% trans 'Комментарий' %}</label>
+			<textarea id="f-comment" name="comment" rows="4" required></textarea>
+		</div>
+		<div class="field field--full">
+			<button type="submit" class="btn btn--primary btn--block">{% trans 'Оставить заявку' %} <i class="fas fa-arrow-right"></i></button>
+		</div>
+	</div>
+</form>

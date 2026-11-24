@@ -1,53 +1,53 @@
-
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-ОСОО КТЗ
-{% endblock %}
+{% load i18n %}
+{% block title %}{{ news.title }} — ОСОО КТЗ{% endblock %}
+{% block meta_description %}{{ news.short_description|truncatewords:30 }}{% endblock %}
 
 {% block content %}
-    <div class="page-content bg-white">
-        <!-- inner page banner -->
-        <div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url({% static 'images/banner/bnr1.jpg' %});">
-            <div class="container">
-                <div class="dlab-bnr-inr-entry">
-                    <h1 class="text-white">{{ news.title }}</h1>
-					<!-- Breadcrumb row -->
-					<div class="breadcrumb-row">
-						<ul class="list-inline">
-							<li><a href="/">Домой</a></li>
-							<li>{{ news.title }}</li>
-						</ul>
-					</div>
-					<!-- Breadcrumb row END -->
-                </div>
-            </div>
-        </div>
-        <!-- inner page banner END -->
-        <!-- contact area -->
-        <div class="content-area">
-            <div class="container max-w900">
-                <!-- blog start -->
-                <div class="blog-post blog-single">
-                    <div class="dlab-post-meta m-b20">
-                        <ul>
-                            <li class="post-date">{{ news.created_at }}</li>
-                            <li class="post-author"> {{ news.author }}</li>
-                        </ul>
-                    </div>
-					<div class="dlab-post-title">
-                        <h4 class="post-title m-t0"><a href="">{{ news.title }}</a></h4>
-                    </div>
-                    <div class="dlab-post-media dlab-img-effect zoom-slow"> 
-						<a href=""><img src="{{ news.main_image.url }}" alt=""></a>
-					</div>
-                    <div class="dlab-post-text">
-						{{ news.description|safe }}
-                    </div>
+<section class="page-hero" style="padding-bottom:120px">
+	<div class="container container--narrow">
+		<ol class="crumbs">
+			<li><a href="{% url 'home' %}">{% trans 'Домой' %}</a></li>
+			<li><a href="{% url 'news' %}">{% trans 'Новости' %}</a></li>
+		</ol>
+		<h1 style="max-width:none">{{ news.title }}</h1>
+		<div class="article__meta">
+			<span><i class="far fa-calendar"></i>{{ news.created_at|date:"d.m.Y" }}</span>
+			<span><i class="far fa-user"></i>{{ news.author }}</span>
+		</div>
+	</div>
+</section>
 
-                </div>
+<article class="section" style="padding-top:0">
+	<div class="container container--narrow">
+		<div class="article__cover"><img src="{{ news.main_image.url }}" alt="{{ news.title }}"></div>
+		<div class="article__body prose">
+			{% if news.short_description %}<p class="lead"><strong>{{ news.short_description }}</strong></p>{% endif %}
+			{{ news.description|safe }}
+		</div>
+		<div class="article__foot">
+			<a class="link-arrow" href="{% url 'news' %}"><i class="fas fa-arrow-left"></i> {% trans 'Новости' %}</a>
+		</div>
+	</div>
+</article>
 
-            </div>
-        </div>
-    </div>
- {% endblock %}
+{% if new_news %}
+<section class="section section--soft section--tight">
+	<div class="container">
+		<div class="section-head">
+			<div><span class="eyebrow">{% trans 'Новости' %}</span><h2>{% trans 'Последние новости' %}</h2></div>
+		</div>
+		<div class="grid grid-3">
+			{% for i in new_news %}
+			<a class="news-card" href="{% url 'news_detail' i.pk %}">
+				<div class="media media--wide"><img src="{{ i.main_image.url }}" alt="" loading="lazy"></div>
+				<div class="news-card__meta"><span>{{ i.created_at|date:"d.m.Y" }}</span><span>{{ i.author }}</span></div>
+				<h3>{{ i.title }}</h3>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,158 +1,81 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}
-ОСОО КТЗ
-{% endblock %}
+{% block title %}{% trans 'Магазин' %} — ОСОО КТЗ{% endblock %}
 
 {% block content %}
-    <!-- header END -->
-    <!-- Content -->
-    <div class="page-content bg-white">
-        <!-- inner page banner -->
-        <div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url{% static 'images/banner/bnr5.jpg' %});">
-            <div class="container">
-                <div class="dlab-bnr-inr-entry">
-                    <h1 class="text-white">Товары</h1>
-					<!-- Breadcrumb row -->
-					<div class="breadcrumb-row">
-						<ul class="list-inline">
-							<li><a href="{% url 'home' %}">Домой</a></li>
-							<li>Товары</li>
-						</ul>
-					</div>
-					<!-- Breadcrumb row END -->
-                </div>
-            </div>
-        </div>
-        <!-- inner page banner END -->
-        <!-- contact area -->
-        <div class="section-full content-inner">
-            <!-- Product -->
-            <div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-4 m-b30">
-						<aside class="side-bar shop-categories sticky-top">
-                            <div class="widget recent-posts-entry">
-								<div class="dlab-accordion advanced-search toggle" id="accordion1">
-									<div class="panel">
-										<div class="acod-head">
-											<h5 class="acod-title"> 
-												<a data-bs-toggle="collapse" href="#categories">
-													Категории
-												</a> 
-											</h5>
-										</div>
-										<div id="categories" class="acod-body collapse show">
-											<div class="acod-content">
-												<div class="widget widget_services">
-													<ul>
-														{% for i in categories %}
-														<li><a href="{% url 'shop' %}?category={{ i.pk }}">{{ i.title }}</a></li>
-														{% endfor %}
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+{% trans 'Магазин' as t_title %}
+{% include 'partials/page_hero.html' with title=t_title %}
 
-
-									<div class="panel">
-										<div class="acod-head">
-											<h5 class="acod-title">
-												<a data-bs-toggle="collapse"  href="#features">
-													Рекомендуемые товары
-												</a>
-											</h5>
-										</div>
-										<div id="features" class="acod-body collapse show">
-											<div class="acod-content">
-												{% for i in products_rec %}
-												<div class="item-widgets-box">
-													<div class="item-widgets-left">
-														<img src="{{ i.image1.url }}" alt="">
-													</div>
-													<div class="item-widgets-body text-black">
-														<h6 class="item-title text-capitalize font-weight-500 m-t0">
-															<a href="{% url 'product_detail' i.pk %}">{{ i.title }}</a>
-														</h6>
-
-														<h6 class="item-price m-b0">
-
-															<span class="text-primary">{{ i.price }} сом</span>
-														</h6>
-													</div>
-												</div>
-												{% endfor %}
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-                        </aside>
-					</div>
-					<div class="col-lg-9 col-md-8 m-b30">
-						<div class="row">
-							{% for i in products %}
-							<div class="col-lg-4 col-md-6 col-sm-6">
-								<div class="item-box m-b10">
-									<div class="item-img">
-										<img src="{{ i.image1.url }}" alt=""/>
-										<div class="item-info-in center">
-											<ul>
-												<li><a href="{% url 'product_detail' i.pk %}"><i class="ti-eye"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="item-info text-center text-black p-a10">
-										<h6 class="item-title font-weight-500"><a href="{% url 'product_detail' i.pk %}">{{ i.title }}</a></h6>
-
-										<h4 class="item-price">
-											<span class="text-primary">{{ i.price }}</span>
-										</h4>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-							<div class="pagination-bx m-b30 clearfix text-center">
-							<ul class="p`agination">
-								{% if page_obj.has_previous %}
-									<li class="previous">
-										<a href="?page={{ page_obj.previous_page_number }}"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a>
-									</li>
-								{% else %}
-									<li class="previous disabled">
-										<a href="javascript:void(0);"><i class="ti-arrow-left"></i> {% trans 'Предыдущий' %}</a>
-									</li>
-								{% endif %}
-
-								{% for num in page_obj.paginator.page_range %}
-									{% if page_obj.number == num %}
-										<li class="active"><a href="javascript:void(0);">{{ num }}</a></li>
-									{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-										<li><a href="?page={{ num }}">{{ num }}</a></li>
-									{% endif %}
-								{% endfor %}
-
-								{% if page_obj.has_next %}
-									<li class="next">
-										<a href="?page={{ page_obj.next_page_number }}">{% trans 'Следующий' %} <i class="ti-arrow-right"></i></a>
-									</li>
-								{% else %}
-									<li class="next disabled">
-										<a href="javascript:void(0);">{% trans 'Следующий' %} <i class="ti-arrow-right"></i></a>
-									</li>
-								{% endif %}
-							</ul>
-						</div>
-						</div>
-					</div>
+<section class="section section--tight">
+	<div class="container">
+		<div class="with-sidebar">
+			<aside class="sidebar">
+				<div class="widget">
+					<div class="widget__title">{% trans 'Поиск' %}</div>
+					<form method="get" class="search-field" role="search">
+						{% if request.GET.category %}<input type="hidden" name="category" value="{{ request.GET.category }}">{% endif %}
+						<input name="title" type="search" value="{{ request.GET.title }}" placeholder="{% trans 'Введите' %}…">
+						<button type="submit" aria-label="{% trans 'Поиск' %}"><i class="fas fa-search"></i></button>
+					</form>
 				</div>
+				<div class="widget">
+					<div class="widget__title">{% trans 'Категория' %}</div>
+					<nav class="side-nav">
+						<a href="{% url 'shop' %}" {% if not request.GET.category %}class="is-active"{% endif %}>{% trans 'Все' %} <i class="fas fa-arrow-right"></i></a>
+						{% for i in categories %}
+						<a href="{% url 'shop' %}?category={{ i.pk }}" {% if request.GET.category == i.pk|stringformat:"s" %}class="is-active"{% endif %}>{{ i.title }} <i class="fas fa-arrow-right"></i></a>
+						{% endfor %}
+					</nav>
+				</div>
+				{% if products_rec %}
+				<div class="widget">
+					<div class="widget__title">{% trans 'Рекомендация' %}</div>
+					{% for i in products_rec %}
+					<a class="mini-post" href="{% url 'product_detail' i.pk %}">
+						<img src="{{ i.image1.url }}" alt="" loading="lazy" style="object-fit:contain;background:#fff;border:1px solid var(--line)">
+						<div>
+							<h4>{{ i.title }}</h4>
+							<span class="price" style="font-size:14px">{{ i.price }}</span>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</aside>
+
+			<div>
+				<div class="toolbar">
+					<span class="toolbar__count">{% trans 'Товары' %}: {{ paginator.count }}</span>
+					{% if request.GET.title or request.GET.category %}
+					<a class="toolbar__reset" href="{% url 'shop' %}"><i class="fas fa-times"></i> {% trans 'Сбросить фильтры' %}</a>
+					{% endif %}
+				</div>
+				{% if products %}
+				<div class="grid grid-3 reveal-group">
+					{% for i in products %}
+					<a class="product-card" href="{% url 'product_detail' i.pk %}">
+						<div class="media"><img src="{{ i.image1.url }}" alt="{{ i.title }}" loading="lazy"></div>
+						<div class="product-card__body">
+							<span class="product-card__cat">{{ i.category.title }}</span>
+							<h3>{{ i.title }}</h3>
+							<div class="product-card__foot">
+								<span class="price">{{ i.price }}</span>
+								<span class="product-card__go"><i class="fas fa-arrow-right"></i></span>
+							</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+				{% include 'partials/pagination.html' %}
+				{% else %}
+				<div class="empty">
+					<i class="fas fa-search"></i>
+					{% trans 'Ничего не найдено' %}
+				</div>
+				{% endif %}
 			</div>
-            <!-- Product END -->
 		</div>
-
-    </div>
-    <!-- Content END-->
+	</div>
+</section>
 {% endblock %}
-
