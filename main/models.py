@@ -277,3 +277,17 @@ class AboutImages(models.Model):
 
     class Meta:
         verbose_name = 'Изображение о нас'
+
+
+class Certificate(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    file = models.FileField(upload_to='certificates/', verbose_name='Файл (PDF)')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Сертификат'
+        verbose_name_plural = 'Сертификаты'
+        ordering = ['-created_at']

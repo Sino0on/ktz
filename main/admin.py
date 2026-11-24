@@ -89,6 +89,12 @@ class BannerAdmin(admin.ModelAdmin):
     list_filter = ('title',)
 
 
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title',)
+
+
 admin.site.register(SiteSetting)
 admin.site.register(CategoryVacancy)
 admin.site.register(Industry)

@@ -158,6 +158,7 @@ class AboutUsView(generic.TemplateView):
         context['site'] = SiteSetting.objects.all().first()
         context['new_news'] = News.objects.all()[:3]
         context['images'] = AboutImages.objects.all()
+        context['certificates'] = Certificate.objects.all()
         return context
 
 
